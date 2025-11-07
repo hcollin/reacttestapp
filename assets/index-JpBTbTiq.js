@@ -1,0 +1,1 @@
+import{j as r,C as i}from"./index-x0IA9R-S.js";import{L as o}from"./LibraryList-abA3cvcp.js";import{P as t}from"./PageTitle-CPmfdx86.js";import"./libraries-CpFWpK1T.js";import"./Anchor-BFUwONbj.js";function p(){return r.jsxs(i,{size:"lg",children:[r.jsx(t,{children:"Libraries"}),r.jsx(o,{size:"xl"})]})}export{p as component};
