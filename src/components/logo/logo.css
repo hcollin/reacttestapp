@@ -1,0 +1,168 @@
+
+
+.logo {
+    padding: 0.25rem 1rem;
+    margin: 0;
+    width: 300px;
+    text-align: center;
+
+    border-width: 2px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-style: solid;
+    border-top-left-radius: 25% 1rem;
+    border-bottom-right-radius: 2rem 2rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+
+    & > h1 {
+        font-size: 2rem;
+        padding: 0;
+        margin: 0;
+
+        font-family: "Quantico", sans-serif;
+        font-weight: 400;
+        white-space: nowrap;
+        letter-spacing: -1px;
+
+        & > span {
+            &.first-letter {
+                font-weight: 700;
+            }
+
+            &.new-word {
+                display: inline-block;
+                margin-left: 0.75rem;
+            }
+
+            &.flip {
+                display: inline-block;
+                transform: scaleX(-1);
+                transform-origin: center;
+            }
+
+            &.drop {
+                display: inline-block;
+                position: relative;
+                top: 0.2rem;
+            }
+            &.pop {
+                display: inline-block;
+                position: relative;
+                bottom: 0.2rem;
+            }
+
+            &.rotate-letter {
+                &.d-10 {
+                    display: inline-block;
+                    transform: rotate(-10deg);
+                    transform-origin: center;
+                }
+                &.d5 {
+                    display: inline-block;
+                    transform: rotate(5deg);
+                    transform-origin: center;
+                }
+
+                &.d10 {
+                    display: inline-block;
+                    transform: rotate(10deg);
+                    transform-origin: center;
+                }
+
+                &.d25 {
+                    display: inline-block;
+                    transform: rotate(25deg);
+                    transform-origin: center;
+                }
+
+                &.d45 {
+                    display: inline-block;
+                    transform: rotate(45deg);
+                    transform-origin: center;
+                }
+            }
+        }
+    }
+
+    &.defaultlogo {
+        border-color: var(--mantine-primary-color-7);
+
+        box-shadow: 0 0 4px 2px #0008;
+        h1 {
+            color: color-mix(in srgb, var(--mantine-primary-color-7), transparent 20%);
+            text-shadow: 0 4px 2px #0008;
+            span.first-letter {
+                color: color-mix(in srgb, var(--mantine-primary-color-7), transparent 0%);
+            }
+        }
+    }
+
+    &.whitelogo {
+        border-color: var(--mantine-white);
+        box-shadow: 0 0 4px 2px #0008;
+
+        h1 {
+            color: #ffffffcc;
+            text-shadow: 0 4px 2px #0008;
+            span.first-letter {
+                color: #ffffff;
+            }
+        }
+    }
+
+    &.blacklogo {
+        border-color: #000c;
+        box-shadow: 0 0 3px 2px #0008;
+        h1 {
+            color: #000000ee;
+            text-shadow: 0 3px 2px #0008;
+            span.first-letter {
+                color: #000;
+            }
+        }
+    }
+
+    &.textlogo {
+        border-color: var(--mantine-color-text);
+        box-shadow: 0 0 4px 2px var(--mantine-primary-color-contrast);
+
+        h1 {
+            color: color-mix(in srgb, var(--mantine-color-text), transparent 20%);
+            text-shadow: 0 4px 2px var(--mantine-primary-color-contrast);
+
+            span.first-letter {
+                color: color-mix(in srgb, var(--mantine-color-text), transparent 0%);
+            }
+        }
+    }
+
+    &.logo-xs {
+        transform-origin: center left;
+        transform: scale(0.7);
+        margin-right: calc(-1 * (300px - (300px * 0.7)));
+    }
+
+    &.logo-sm {
+        transform-origin: center left;
+        transform: scale(0.85);
+        margin-right: calc(-1 * (300px - (300px * 0.85)));
+    }
+
+    &.logo-md {
+        transform-origin: center left;
+        transform: scale(1);
+    }
+
+    &.logo-lg {
+        transform-origin: center left;
+        transform: scale(1.25);
+        margin-right: calc(-1 * (300px - (300px * 1.25)));
+    }
+
+    &.logo-xl {
+        transform-origin: center left;
+        transform: scale(1.5);
+        margin-right: calc(-1 * (300px - (300px * 1.5)));
+    }
+}

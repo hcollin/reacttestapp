@@ -1,0 +1,38 @@
+/* appheader.module.css */
+.appheader {
+    width: 100%;
+
+    & > div {
+        height: 100%;
+        display: flex;
+        flex: 1 1 auto;
+
+        align-items: center;
+    }
+}
+
+.titletext {
+    color: var(--mantine-primary-color-7);
+    text-shadow: var(--mantine-shadow-md);
+}
+
+.titletransparent {
+    color: var(--mantine-color-text);
+    text-shadow: var(--mantine-shadow-md);
+}
+
+.headermenu {
+    justify-content: flex-end;
+}
+
+.transparentbg.mantine-AppShell-header {
+    background-color: transparent !important;
+}
+
+.headergroup {
+    width: 100%;
+
+    & > div:last-child {
+        justify-content: flex-end;
+    }
+}
