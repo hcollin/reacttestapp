@@ -1,1 +1,0 @@
-import{j as r,C as i}from"./index-CocFIXi1.js";import{L as o}from"./LibraryList-D-M0vcsX.js";import{P as t}from"./PageTitle-DkL8b7PR.js";import"./libraries-OZWwDM9P.js";import"./Anchor-CsrP136Q.js";function p(){return r.jsxs(i,{size:"lg",children:[r.jsx(t,{children:"Libraries"}),r.jsx(o,{size:"xl"})]})}export{p as component};
