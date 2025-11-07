@@ -1,0 +1,1 @@
+import{j as e,T as a}from"./index-CocFIXi1.js";const r=t=>e.jsx(a,{mt:"xl",mb:"lg",fw:700,size:"2.2rem",variant:t.gradient?"gradient":"h1",c:"var(--mantine-primary-color-7)",...t,style:{fontFamily:"Quantico, sans-serif",letterSpacing:"-1px",...t.style},children:t.children});export{r as P};
