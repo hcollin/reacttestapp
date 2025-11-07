@@ -4,7 +4,7 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-    base: "/reacttestbench/",
+    base: "/reacttestapp/",
     plugins: [
         tanstackRouter({
             target: "react",

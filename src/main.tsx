@@ -1,7 +1,7 @@
 // IMPORT: Core Libraries
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { RouterProvider, createHashHistory, createRouter } from "@tanstack/react-router";
 import { MantineProvider, type AppShellResponsiveSize, type MantineSpacing } from "@mantine/core";
 
 // IMPORT: Mantine : Custom themes
@@ -16,8 +16,11 @@ import "@mantine/core/styles.css";
 // IMPORT: Custom css
 import "./index.css";
 
+// Create a hash history instance for GitHub Pages compatibility
+const hashHistory = createHashHistory()
+
 // Create a new router instance
-const router = createRouter({ routeTree });
+const router = createRouter({ routeTree, history: hashHistory });
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
