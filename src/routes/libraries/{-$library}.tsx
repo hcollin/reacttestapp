@@ -93,7 +93,7 @@ function LibraryComponent() {
 											return (
 												<Box key={asi.title} mb="md">
 													<AnchorLink
-														to="/libraries/{-$libname}/{-$markdown}"
+														to="/libraries/{-$libname}/md/{-$markdown}"
 														params={(prev) => ({ ...prev, libname: lib.name, markdown: asi.id })}
 													>
 														{asi.title} <IconMarkdown size="1rem" />
