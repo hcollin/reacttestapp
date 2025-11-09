@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibrariesIndexRouteImport } from './routes/libraries/index'
-import { Route as LibrariesChar123LibnameChar125RouteImport } from './routes/libraries/{-$libname}'
+import { Route as LibrariesChar123LibraryChar125RouteImport } from './routes/libraries/{-$library}'
+import { Route as LibrariesChar123LibnameChar125IndexRouteImport } from './routes/libraries/{-$libname}/index'
+import { Route as LibrariesChar123LibnameChar125MdChar123MarkdownChar125RouteImport } from './routes/libraries/{-$libname}/md/{-$markdown}'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -29,45 +31,84 @@ const LibrariesIndexRoute = LibrariesIndexRouteImport.update({
   path: '/libraries/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LibrariesChar123LibnameChar125Route =
-  LibrariesChar123LibnameChar125RouteImport.update({
-    id: '/libraries/{-$libname}',
-    path: '/libraries/{-$libname}',
+const LibrariesChar123LibraryChar125Route =
+  LibrariesChar123LibraryChar125RouteImport.update({
+    id: '/libraries/{-$library}',
+    path: '/libraries/{-$library}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LibrariesChar123LibnameChar125IndexRoute =
+  LibrariesChar123LibnameChar125IndexRouteImport.update({
+    id: '/libraries/{-$libname}/',
+    path: '/libraries/{-$libname}/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route =
+  LibrariesChar123LibnameChar125MdChar123MarkdownChar125RouteImport.update({
+    id: '/libraries/{-$libname}/md/{-$markdown}',
+    path: '/libraries/{-$libname}/md/{-$markdown}',
     getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/libraries/{-$libname}': typeof LibrariesChar123LibnameChar125Route
+  '/libraries/{-$library}': typeof LibrariesChar123LibraryChar125Route
   '/libraries': typeof LibrariesIndexRoute
+  '/libraries/{-$libname}': typeof LibrariesChar123LibnameChar125IndexRoute
+  '/libraries/{-$libname}/md/{-$markdown}': typeof LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/libraries/{-$libname}': typeof LibrariesChar123LibnameChar125Route
+  '/libraries/{-$library}': typeof LibrariesChar123LibraryChar125Route
   '/libraries': typeof LibrariesIndexRoute
+  '/libraries/{-$libname}': typeof LibrariesChar123LibnameChar125IndexRoute
+  '/libraries/{-$libname}/md/{-$markdown}': typeof LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/libraries/{-$libname}': typeof LibrariesChar123LibnameChar125Route
+  '/libraries/{-$library}': typeof LibrariesChar123LibraryChar125Route
   '/libraries/': typeof LibrariesIndexRoute
+  '/libraries/{-$libname}/': typeof LibrariesChar123LibnameChar125IndexRoute
+  '/libraries/{-$libname}/md/{-$markdown}': typeof LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/libraries/{-$libname}' | '/libraries'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/libraries/{-$library}'
+    | '/libraries'
+    | '/libraries/{-$libname}'
+    | '/libraries/{-$libname}/md/{-$markdown}'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/libraries/{-$libname}' | '/libraries'
-  id: '__root__' | '/' | '/about' | '/libraries/{-$libname}' | '/libraries/'
+  to:
+    | '/'
+    | '/about'
+    | '/libraries/{-$library}'
+    | '/libraries'
+    | '/libraries/{-$libname}'
+    | '/libraries/{-$libname}/md/{-$markdown}'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/libraries/{-$library}'
+    | '/libraries/'
+    | '/libraries/{-$libname}/'
+    | '/libraries/{-$libname}/md/{-$markdown}'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  LibrariesChar123LibnameChar125Route: typeof LibrariesChar123LibnameChar125Route
+  LibrariesChar123LibraryChar125Route: typeof LibrariesChar123LibraryChar125Route
   LibrariesIndexRoute: typeof LibrariesIndexRoute
+  LibrariesChar123LibnameChar125IndexRoute: typeof LibrariesChar123LibnameChar125IndexRoute
+  LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route: typeof LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route
 }
 
 declare module '@tanstack/react-router' {
@@ -93,11 +134,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibrariesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/libraries/{-$libname}': {
-      id: '/libraries/{-$libname}'
+    '/libraries/{-$library}': {
+      id: '/libraries/{-$library}'
+      path: '/libraries/{-$library}'
+      fullPath: '/libraries/{-$library}'
+      preLoaderRoute: typeof LibrariesChar123LibraryChar125RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/libraries/{-$libname}/': {
+      id: '/libraries/{-$libname}/'
       path: '/libraries/{-$libname}'
       fullPath: '/libraries/{-$libname}'
-      preLoaderRoute: typeof LibrariesChar123LibnameChar125RouteImport
+      preLoaderRoute: typeof LibrariesChar123LibnameChar125IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/libraries/{-$libname}/md/{-$markdown}': {
+      id: '/libraries/{-$libname}/md/{-$markdown}'
+      path: '/libraries/{-$libname}/md/{-$markdown}'
+      fullPath: '/libraries/{-$libname}/md/{-$markdown}'
+      preLoaderRoute: typeof LibrariesChar123LibnameChar125MdChar123MarkdownChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -106,8 +161,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  LibrariesChar123LibnameChar125Route: LibrariesChar123LibnameChar125Route,
+  LibrariesChar123LibraryChar125Route: LibrariesChar123LibraryChar125Route,
   LibrariesIndexRoute: LibrariesIndexRoute,
+  LibrariesChar123LibnameChar125IndexRoute:
+    LibrariesChar123LibnameChar125IndexRoute,
+  LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route:
+    LibrariesChar123LibnameChar125MdChar123MarkdownChar125Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

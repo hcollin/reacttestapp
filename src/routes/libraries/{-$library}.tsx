@@ -1,9 +1,15 @@
-import { Container, Group, Title, Box, Text, Badge, Grid } from "@mantine/core";
+import { Container, Group, Title, Box, Text, Badge, Grid, Anchor } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
+
+import { useConfig } from "hcconfig";
+import { IconExternalLink, IconMarkdown } from "@tabler/icons-react";
+import AnchorLink from "../../components/AnchorLink/AnchorLink";
+
+import appConfig from "../../configs/appConfig";
 import { getLibraryByName } from "../../data/libraries";
 import LibraryList from "../../components/LibraryList/LibraryList";
 
-export const Route = createFileRoute("/libraries/{-$libname}")({
+export const Route = createFileRoute("/libraries/{-$library}")({
 	component: LibraryComponent,
 	staticData: {
 		title: "Library",
@@ -11,16 +17,20 @@ export const Route = createFileRoute("/libraries/{-$libname}")({
 });
 
 function LibraryComponent() {
-	const { libname } = Route.useParams();
+	const { library } = Route.useParams();
+
+	const libname = library; // Adjusted to match the param name
+
+	const [confIsMobile] = useConfig(appConfig, "isMobile");
 
 	const lib = getLibraryByName(libname);
 
 	const npmVer = lib && lib.npm ? `https://img.shields.io/npm/v/${lib.npm}.svg` : null;
 	const buildStatus = lib && lib.buildPath && lib.github ? `https://github.com/${lib.github}/${lib.buildPath}/badge.svg` : null;
 
-	const showAside = lib && lib.aside && lib.aside.length > 0;
+	const showAside = lib && lib.aside && lib.aside.length > 0 && !confIsMobile;
 
-	const menuSize = 2;
+	const menuSize = confIsMobile ? 0 : 2;
 
 	const asideSize = showAside ? 3 : 0;
 
@@ -29,9 +39,11 @@ function LibraryComponent() {
 	return (
 		<Container size="lg">
 			<Grid mt="xl" mb="lg" gutter="xl">
-				<Grid.Col span={lib ? menuSize : 12}>
-					<LibraryList size="sm" />
-				</Grid.Col>
+				{!confIsMobile && (
+					<Grid.Col span={lib ? menuSize : 12}>
+						<LibraryList size="sm" />
+					</Grid.Col>
+				)}
 				{lib && (
 					<>
 						<Grid.Col span={mainSize}>
@@ -66,11 +78,35 @@ function LibraryComponent() {
 						</Grid.Col>
 						{showAside && (
 							<Grid.Col span={asideSize}>
-								{lib.aside.map((asideItem, index) => (
-									<Box key={index} mb="md">
-										{asideItem[0]}
-									</Box>
-								))}
+								{lib.aside &&
+									lib.aside.map((asi) => {
+										if (asi.link && asi.link.external) {
+											return (
+												<Box key={asi.title} mb="md">
+													<Anchor href={asi.link?.url} target="_blank" rel="noopener noreferrer">
+														{asi.title} <IconExternalLink size="1rem" />
+													</Anchor>
+												</Box>
+											);
+										}
+										if (asi.markdown !== undefined) {
+											return (
+												<Box key={asi.title} mb="md">
+													<AnchorLink
+														to="/libraries/{-$libname}/{-$markdown}"
+														params={(prev) => ({ ...prev, libname: lib.name, markdown: asi.id })}
+													>
+														{asi.title} <IconMarkdown size="1rem" />
+													</AnchorLink>
+												</Box>
+											);
+										}
+										return (
+											<Box key={asi.title} mb="md">
+												{asi.title}
+											</Box>
+										);
+									})}
 							</Grid.Col>
 						)}
 					</>

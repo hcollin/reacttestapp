@@ -1,4 +1,5 @@
 import { IconTool, IconDice6 } from "@tabler/icons-react";
+import React from "react";
 
 export function getLibraryByName(name: string | undefined) {
 	if (!name) return undefined;
@@ -6,7 +7,32 @@ export function getLibraryByName(name: string | undefined) {
 	return lib;
 }
 
-export const LIBRARIES = [
+export interface ILibraryData {
+	icon: React.FC<any>;
+	name: string;
+	description: string;
+	badges: string[];
+	npm?: string;
+	npmUrl?: string;
+	github?: string;
+	buildPath?: string;
+	aside?: ILibraryAsideItem[];
+}
+
+export interface ILibraryAsideItem {
+	id: string;
+	title: string;
+	icon?: React.FC<any>;
+	markdown?: {
+		url: string;
+	};
+	link?: {
+		url: string;
+		external?: boolean;
+	};
+}
+
+export const LIBRARIES: ILibraryData[] = [
 	{
 		icon: IconTool,
 		name: "hcconfig",
@@ -15,10 +41,27 @@ export const LIBRARIES = [
 		badges: ["react", "typescript", "experimental"],
 		npm: "hcconfig",
 		github: "hcollin/hcconfig",
+
 		buildPath: "actions/workflows/build.yml",
 		aside: [
-			["Readme", "https://raw.githubusercontent.com/hcollin/hcconfig/main/readme.md"],
-			["Version history", "https://raw.githubusercontent.com/hcollin/hcconfig/main/versionhistory.md"],
+			{
+				id: "readme",
+				title: "Readme file in GitHub",
+				markdown: {
+					url: "https://raw.githubusercontent.com/hcollin/hcconfig/main/readme.md",
+				},
+				// link: {
+				// 	url: "https://raw.githubusercontent.com/hcollin/hcconfig/main/readme.md",
+				// 	external: true,
+				// },
+			},
+			{
+				id: "versionhistory",
+				title: "Version history",
+				markdown: {
+					url: "https://raw.githubusercontent.com/hcollin/hcconfig/main/versionhistory.md",
+				},
+			},
 		],
 	},
 	{
@@ -28,5 +71,14 @@ export const LIBRARIES = [
 		badges: ["node", "typescript", "stable"],
 		npm: "rndlib",
 		github: "hcollin/rndlib",
+		aside: [
+			{
+				id: "readme",
+				title: "Readme file in GitHub",
+				markdown: {
+					url: "https://raw.githubusercontent.com/hcollin/rndlib/main/readme.md",
+				},
+			}
+		]
 	},
 ];

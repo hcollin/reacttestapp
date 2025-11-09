@@ -5,6 +5,7 @@ import AnchorLink from "../AnchorLink/AnchorLink";
 interface LibraryListProps {
 	badges?: boolean;
 	size?: "sm" | "md" | "lg" | "xl";
+	activeName?: string;
 }
 
 const SIZES = {
@@ -46,9 +47,21 @@ const LibraryList = (props: LibraryListProps) => {
 		<Stack>
 			{LIBRARIES.map((lib) => {
 				const Icon = lib.icon;
+				const active = props.activeName === lib.name;
 				return (
-					<Card key={lib.name} shadow="sm" padding={SIZES.padding[ss]}>
-						<AnchorLink to="/libraries/{-$libname}" params={(prev) => ({ ...prev, libname: lib.name })} style={{ textDecoration: "none" }}>
+					<Card
+						key={lib.name}
+						shadow="sm"
+						padding={SIZES.padding[ss]}
+						withBorder={true}
+						style={active ? { borderColor: "var(--mantine-primary-color-2)" } : {}}
+					>
+						<AnchorLink
+							to="/libraries/{-$libname}"
+							params={(prev) => ({ ...prev, libname: lib.name })}
+							style={{ textDecoration: "none" }}
+							c={active ? "var(--mantine-primary-color-2)" : undefined}
+						>
 							<Group>
 								<Icon size={iconSize} />
 

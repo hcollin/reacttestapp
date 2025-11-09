@@ -6,11 +6,12 @@ interface AnchorLinkProps extends AnchorProps, LinkProps {
 }
 
 const AnchorLink = (props: AnchorLinkProps) => {
-	const { style, to, params, children } = props;
+	const { style, to, params, c, children } = props;
 
 	return (
 		<Anchor
 			style={style}
+			c={c || undefined}
 			renderRoot={({ className, ...others }) => {
 				return (
 					<Link to={to} params={params} className={className} {...others}>
