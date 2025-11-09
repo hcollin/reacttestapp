@@ -83,7 +83,7 @@ function Index() {
                         return (
                             <Card key={lib.name} className="library-card" shadow="sm" p="xs">
                                 <CardSection p="sm" withBorder>
-                                    <Link to={lib.topath} style={{ textDecoration: "none" }}>
+                                    <Link to="/libraries/{-$libname}" params={{libname: lib.name}} style={{ textDecoration: "none" }}>
                                         <Group>
                                             <LibIcon
                                                 size={48}
