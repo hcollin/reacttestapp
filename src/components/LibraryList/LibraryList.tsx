@@ -1,5 +1,4 @@
-import { Stack, Card, Group, Title, Badge, Text, type TitleOrder, Anchor } from "@mantine/core";
-import { Link } from "@tanstack/react-router";
+import { Stack, Card, Group, Title, Badge, Text, type TitleOrder } from "@mantine/core";
 import { LIBRARIES } from "../../data/libraries";
 import AnchorLink from "../AnchorLink/AnchorLink";
 
